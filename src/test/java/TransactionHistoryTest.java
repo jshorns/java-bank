@@ -13,7 +13,7 @@ class TransactionHistoryTest {
 
     @Test
     public void addTransaction(){
-        Transaction transaction = new Transaction(0, true);
+        Transaction transaction = new Transaction(0, true, 0);
         TransactionHistory transactionHistory = new TransactionHistory();
         transactionHistory.addTransaction(transaction);
         assertEquals(1, transactionHistory.getTransactions().size());

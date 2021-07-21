@@ -20,7 +20,7 @@ public class BankAccount {
     void deposit(float amount) {
         // error handling
         this.balance += amount;
-        Transaction transaction = new Transaction(amount, true);
+        Transaction transaction = new Transaction(amount, true, this.balance);
         transactionHistory.addTransaction(transaction);
     }
 
@@ -29,7 +29,7 @@ public class BankAccount {
             throw new Exception("Insufficient funds.");
         }
         this.balance -= amount;
-        Transaction transaction = new Transaction(amount, false);
+        Transaction transaction = new Transaction(amount, false, this.balance);
         this.transactionHistory.addTransaction(transaction);
     }
 
