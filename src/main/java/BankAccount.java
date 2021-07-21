@@ -1,30 +1,39 @@
 import java.util.ArrayList;
 
 public class BankAccount {
-    public float balance = 0;
-    ArrayList<Transaction> transactionHistory = new ArrayList<>();
+    private float balance;
+    private TransactionHistory transactionHistory;
+
+    public BankAccount(){
+        this(0, new TransactionHistory());
+    }
+
+    public BankAccount(float balance, TransactionHistory transactionHistory){
+        this.balance = balance;
+        this.transactionHistory = transactionHistory;
+    }
 
     float getBalance() {
-        return balance;
+        return this.balance;
     }
 
     void deposit(float amount) {
         // error handling
-        balance += amount;
+        this.balance += amount;
         Transaction transaction = new Transaction(amount, true);
-        transactionHistory.add(transaction);
+        transactionHistory.addTransaction(transaction);
     }
 
     void withdrawal(float amount) throws Exception{
-        if ((balance - amount) < 0){
+        if ((this.balance - amount) < 0){
             throw new Exception("Insufficient funds.");
         }
-        balance -= amount;
+        this.balance -= amount;
         Transaction transaction = new Transaction(amount, false);
-        transactionHistory.add(transaction);
+        this.transactionHistory.addTransaction(transaction);
     }
 
     ArrayList<Transaction> getTransactionHistory() {
-        return transactionHistory;
+        return this.transactionHistory.getTransactions();
     }
 }
