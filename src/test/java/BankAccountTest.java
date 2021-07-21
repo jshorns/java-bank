@@ -22,6 +22,15 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount();
         bankAccount.deposit(400);
         assertEquals(400, bankAccount.getBalance());
+        assertEquals(1, bankAccount.getTransactionHistory().size());
+        assertEquals(400, bankAccount.getTransactionHistory().get(0).amount);
+        assertTrue(bankAccount.getTransactionHistory().get(0).deposit);
+        bankAccount.deposit(200);
+        assertEquals(600, bankAccount.getBalance());
+        assertEquals(2, bankAccount.getTransactionHistory().size());
+        assertEquals(200, bankAccount.getTransactionHistory().get(1).amount);
+        assertTrue(bankAccount.getTransactionHistory().get(1).deposit);
+
     }
 
     @Test
@@ -30,5 +39,13 @@ class BankAccountTest {
         bankAccount.deposit(400);
         bankAccount.withdrawal(200);
         assertEquals(200, bankAccount.getBalance());
+        assertEquals(2, bankAccount.getTransactionHistory().size());
+        assertEquals(200, bankAccount.getTransactionHistory().get(1).amount);
+        assertFalse(bankAccount.getTransactionHistory().get(1).deposit);
+        bankAccount.withdrawal(100);
+        assertEquals(100, bankAccount.getBalance());
+        assertEquals(3, bankAccount.getTransactionHistory().size());
+        assertEquals(100, bankAccount.getTransactionHistory().get(2).amount);
+        assertFalse(bankAccount.getTransactionHistory().get(2).deposit);
     }
 }

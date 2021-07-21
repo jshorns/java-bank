@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class BankAccount {
     public float balance = 0;
-    ArrayList transactionHistory = new ArrayList<>();
+    ArrayList<Transaction> transactionHistory = new ArrayList<>();
 
     float getBalance() {
         return balance;
@@ -11,13 +10,17 @@ public class BankAccount {
 
     void deposit(float amount) {
         balance += amount;
+        Transaction transaction = new Transaction(amount, true);
+        transactionHistory.add(transaction);
     }
 
     void withdrawal(float amount) {
         balance -= amount;
+        Transaction transaction = new Transaction(amount, false);
+        transactionHistory.add(transaction);
     }
 
-    ArrayList getTransactionHistory() {
+    ArrayList<Transaction> getTransactionHistory() {
         return transactionHistory;
     }
 }
