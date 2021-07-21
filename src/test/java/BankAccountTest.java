@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ class BankAccountTest {
     }
 
     @Test
-    public void testWithdrawal() {
+    public void testWithdrawal() throws Exception {
         BankAccount bankAccount = new BankAccount();
         bankAccount.deposit(400);
         bankAccount.withdrawal(200);
@@ -47,5 +48,6 @@ class BankAccountTest {
         assertEquals(3, bankAccount.getTransactionHistory().size());
         assertEquals(100, bankAccount.getTransactionHistory().get(2).amount);
         assertFalse(bankAccount.getTransactionHistory().get(2).deposit);
+        assertThrows(Exception.class, () -> bankAccount.withdrawal(200));
     }
 }
