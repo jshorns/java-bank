@@ -13,4 +13,12 @@ public class TransactionHistory {
         this.transactions.add(transaction);
     }
 
+    public boolean isEmpty(){
+        return this.transactions.size() == 0;
+    }
+
+    public Transaction getLastTransaction(){
+        return this.transactions.get(this.transactions.size() - 1);
+    }
+
 }

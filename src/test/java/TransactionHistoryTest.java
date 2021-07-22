@@ -28,4 +28,13 @@ class TransactionHistoryTest {
         assertEquals(1, transactionHistory.getTransactions().size());
 
     }
+
+    @Test
+    public void getLastTransaction(){
+        Transaction transaction = new Transaction(0, true, 0);
+        TransactionHistory transactionHistory = new TransactionHistory();
+        transactionHistory.addTransaction(transaction);
+        assertEquals(transaction, transactionHistory.getLastTransaction());
+
+    }
 }
