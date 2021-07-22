@@ -12,4 +12,5 @@ public class TransactionHistory {
         // also about mocking/stubbing
         this.transactions.add(transaction);
     }
+
 }

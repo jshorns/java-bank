@@ -23,15 +23,15 @@ class BankAccountTest {
         bankAccount.deposit(400);
         assertEquals(400, bankAccount.getBalance());
         assertEquals(1, bankAccount.getTransactionHistory().size());
-        assertEquals(400, bankAccount.getTransactionHistory().get(0).amount);
-        assertEquals(400, bankAccount.getTransactionHistory().get(0).balanceAfter);
-        assertTrue(bankAccount.getTransactionHistory().get(0).deposit);
+        assertEquals(400, bankAccount.getTransactionHistory().get(0).getAmount());
+        assertEquals(400, bankAccount.getTransactionHistory().get(0).getBalanceAfter());
+        assertTrue(bankAccount.getTransactionHistory().get(0).isDeposit());
         bankAccount.deposit(200);
         assertEquals(600, bankAccount.getBalance());
         assertEquals(2, bankAccount.getTransactionHistory().size());
-        assertEquals(200, bankAccount.getTransactionHistory().get(1).amount);
-        assertEquals(600, bankAccount.getTransactionHistory().get(1).balanceAfter);
-        assertTrue(bankAccount.getTransactionHistory().get(1).deposit);
+        assertEquals(200, bankAccount.getTransactionHistory().get(1).getAmount());
+        assertEquals(600, bankAccount.getTransactionHistory().get(1).getBalanceAfter());
+        assertTrue(bankAccount.getTransactionHistory().get(1).isDeposit());
 
     }
 
@@ -42,15 +42,15 @@ class BankAccountTest {
         bankAccount.withdrawal(200);
         assertEquals(200, bankAccount.getBalance());
         assertEquals(2, bankAccount.getTransactionHistory().size());
-        assertEquals(200, bankAccount.getTransactionHistory().get(1).amount);
-        assertFalse(bankAccount.getTransactionHistory().get(1).deposit);
-        assertEquals(200, bankAccount.getTransactionHistory().get(1).balanceAfter);
+        assertEquals(200, bankAccount.getTransactionHistory().get(1).getAmount());
+        assertFalse(bankAccount.getTransactionHistory().get(1).isDeposit());
+        assertEquals(200, bankAccount.getTransactionHistory().get(1).getBalanceAfter());
         bankAccount.withdrawal(100);
         assertEquals(100, bankAccount.getBalance());
         assertEquals(3, bankAccount.getTransactionHistory().size());
-        assertEquals(100, bankAccount.getTransactionHistory().get(2).amount);
-        assertEquals(100, bankAccount.getTransactionHistory().get(2).balanceAfter);
-        assertFalse(bankAccount.getTransactionHistory().get(2).deposit);
+        assertEquals(100, bankAccount.getTransactionHistory().get(2).getAmount());
+        assertEquals(100, bankAccount.getTransactionHistory().get(2).getBalanceAfter());
+        assertFalse(bankAccount.getTransactionHistory().get(2).isDeposit());
         assertThrows(Exception.class, () -> bankAccount.withdrawal(200));
     }
 }
